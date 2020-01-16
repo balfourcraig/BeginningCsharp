@@ -23,7 +23,7 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunFancy() {
+        public static void Run_Fancy() {
             var scores = new List<double>();
             for (double s = ConsoleRead.ReadDouble(); s != -1; s = ConsoleRead.ReadDouble()) {
                 scores.Add(s);

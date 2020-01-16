@@ -18,7 +18,7 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunLINQ() {
+        public static void Run_LINQ() {
             for (string input = Console.ReadLine().ToUpperInvariant(); input != "#"; input = Console.ReadLine().ToUpperInvariant()) {
                 Console.WriteLine(input.Count(x => vowels.Contains(x)));
             }

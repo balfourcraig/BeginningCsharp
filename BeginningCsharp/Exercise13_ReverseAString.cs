@@ -15,7 +15,7 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunFast() {
+        public static void Run_Fast() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 char[] letters = new char[input.Length];
                 for (int i = 0; i < input.Length; i++) {
@@ -25,7 +25,7 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunLINQ() {
+        public static void Run_LINQ() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 Console.WriteLine(new string(input.Reverse().ToArray()));//This is a bit messy really
             }

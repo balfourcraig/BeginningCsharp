@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BeginningCsharp {
-    class Exercise4_FormalNames {
+    class Exercise04_FormalNames {
         public static void Run() {
             string line = Console.ReadLine();
             int commaIndex = line.IndexOf(',');
@@ -16,7 +16,7 @@ namespace BeginningCsharp {
             Console.WriteLine($"{firstName} {surname}");
         }
 
-        public static void RunWithSplit() {
+        public static void Run_Split() {
             string line = Console.ReadLine();
             string[] parts = line.Split(',');
             if(parts.Length != 2)

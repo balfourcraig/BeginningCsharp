@@ -26,7 +26,7 @@ namespace BeginningCsharp {
                 Console.WriteLine($"A {a} B {b}");
             }
         }
-        public static void RunLINQ() {
+        public static void Run_LINQ() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 input = input.ToUpperInvariant();
 

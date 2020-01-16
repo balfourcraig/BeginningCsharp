@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BeginningCsharp {
-    class Exercies21_TestScores {
+    class Exercise21_TestScores {
         public static void Run() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 string[] parts = input.Split(',', StringSplitOptions.RemoveEmptyEntries);

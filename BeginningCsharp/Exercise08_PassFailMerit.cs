@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BeginningCsharp {
-    class Exercise8_PassFailMerit {
+    class Exercise08_PassFailMerit {
         public static void Run() {
             for (int i = ConsoleRead.ReadInt32(); i != -1; i = ConsoleRead.ReadInt32()) {
                 if (i < 50)

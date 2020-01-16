@@ -16,13 +16,13 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunLINQ() {
+        public static void Run_LINQ() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 Console.WriteLine(input.Count(x => x == '*'));//This is lambda syntax, and you can safely ignore it for now. Just showing more LINQ coolness
             }
         }
 
-        public static void RunCounterMethod() {
+        public static void Run_CounterMethod() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 Console.WriteLine(CountStars(input));//Call our own star counting method
             }

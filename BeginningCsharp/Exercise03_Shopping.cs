@@ -4,10 +4,13 @@ using System.Text;
 using CBTools_Core.IO;
 
 namespace BeginningCsharp {
-    class Exercise3_Shopping {
+    class Exercise03_Shopping {
         public static void Run() {
+            Console.WriteLine("Enter item name");
             string itemName = Console.ReadLine();
+            Console.WriteLine("Enter item price");
             double itemPrice = ConsoleRead.ReadDouble();
+            Console.WriteLine("Enter quantity");
             int quant = ConsoleRead.ReadInt32();
 
             Console.WriteLine($"{quant} x {itemName} @ {itemPrice:c2} Total: {itemPrice * quant:c2}");

@@ -26,7 +26,7 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunWithArrays() {//This approach is not much better tbh, but it's a little easier to add new letters to
+        public static void Run_Arrays() {//This approach is not much better tbh, but it's a little easier to add new letters to
             for (string input = Console.ReadLine().ToUpperInvariant(); input != "#"; input = Console.ReadLine().ToUpperInvariant()) {
                 int[] counts = new int[vowels.Length];
                 for (int i = 0; i < input.Length; i++) {

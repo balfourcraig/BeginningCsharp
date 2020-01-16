@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BeginningCsharp {
-    class Exercise6_GreetManyNames {
+    class Exercise06_GreetManyNames {
         public static void Run() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 Console.WriteLine($"Hello {input}");
             }
         }
 
-        public static void RunWithCBTools() {
+        public static void Run_CBTools() {
             while(ConsoleRead.ReadIfNotFlag(out string input)) {
                 Console.WriteLine($"Hello {input}");
             }
         }
 
-        public static void RunWithWhile() {
+        public static void Run_While() {
             string input = Console.ReadLine();
             while(input != "#") {
                 Console.WriteLine($"Hello {input}");
@@ -25,7 +25,7 @@ namespace BeginningCsharp {
             }            
         }
 
-        public static void RunOneLiner() {
+        public static void Run_OneLiner() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine(), Console.WriteLine($"Hello {input}")) ;//This is not good code! It's just interesting
         }
     }

@@ -20,7 +20,7 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunWithSplit() {//This one is a lot more accurate
+        public static void Run_Split() {//This one is a lot more accurate
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 Console.WriteLine(input.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length);
             }

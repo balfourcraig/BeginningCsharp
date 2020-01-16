@@ -22,7 +22,7 @@ namespace BeginningCsharp {
             }
         }
 
-        public static void RunLINQ() {
+        public static void Run_LINQ() {
             for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 int[] nums = ParseArray(input.Split(' ', StringSplitOptions.RemoveEmptyEntries));
                 Console.WriteLine($"Min: {nums.Min()} Max: {nums.Max()}");

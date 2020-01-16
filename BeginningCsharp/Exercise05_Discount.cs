@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BeginningCsharp {
-    class Exercise5_Discount {
+    class Exercise05_Discount {
         public static void Run() {
             string itemName = Console.ReadLine();
             double itemPrice = ConsoleRead.ReadDouble();

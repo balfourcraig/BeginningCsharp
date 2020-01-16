@@ -26,7 +26,7 @@ namespace BeginningCsharp {
     }
 
     class Exercise40_CSVFiles {
-        public static void Run() {
+        public static void Run() {//This one is overkill, but in a real application it would be far more useful, because it can be expanded more easily, and gives useful tokens which you can work with
             for(string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
                 var lexer = new CSVLexer(input);
                 Token t = lexer.GetNextToken();
@@ -37,6 +37,19 @@ namespace BeginningCsharp {
                     t = lexer.GetNextToken();
                 }
                 Console.WriteLine(string.Join(';', tokens));
+            }
+        }
+
+        public static void Run_Simple() {//This one is very simple, and completes the task, but it's not very useful
+            for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {
+                bool quoted = false;
+                char[] output = new char[input.Length];
+                for (int i = 0; i < input.Length; i++) {
+                    if(input[i] == '\"')
+                        quoted = !quoted;
+                    output[i] = !quoted && input[i] == ',' ? ';' : input[i];
+                }
+                Console.WriteLine(new string(output));
             }
         }
     }

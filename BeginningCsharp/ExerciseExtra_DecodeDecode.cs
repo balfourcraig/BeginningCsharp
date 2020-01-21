@@ -17,9 +17,9 @@ namespace BeginningCsharp {
 
         private static char Cypher(char c, int shift) {
             if (c > 'A' && c < 'Z')
-                return (char)(NegMod(c - 'A' + shift, 'Z' - 'A') + 'A');
+                return (char)(FullMod(c - 'A' + shift, 'Z' - 'A') + 'A');
             else if (c > 'a' && c < 'z')
-                return (char)(NegMod(c - 'a' + shift, 'z' - 'a') + 'a');
+                return (char)(FullMod(c - 'a' + shift, 'z' - 'a') + 'a');
             else
                 return c;                 
         }
@@ -30,6 +30,6 @@ namespace BeginningCsharp {
         /// <param name="lhs">Left hand side</param>
         /// <param name="rhs">Right hand side</param>
         /// <returns></returns>
-        private static int NegMod(int lhs, int rhs) => (lhs % rhs + rhs) % rhs;
+        private static int FullMod(int lhs, int rhs) => (lhs % rhs + rhs) % rhs;
     }
 }

@@ -30,5 +30,15 @@ namespace BeginningCsharp {
                 Console.WriteLine(new string(input.Reverse().ToArray()));//This is a bit messy really
             }
         }
+
+        public static unsafe void Run_Create() {//This one is cryptic as fuck! It can, under some conditions, be slightly faster than the other methods, but the lack of readability really isn't worth it in 99% of cases
+            for (string input = Console.ReadLine(); input != "#"; input = Console.ReadLine()) {               
+                Console.WriteLine(string.Create(input.Length, input, (c, s) => {
+                    for (int i = s.Length - 1; i >= 0; i--) {
+                        c[s.Length - 1 - i] = s[i];
+                    }
+                }));
+            }
+        }
     }
 }

@@ -3,7 +3,7 @@ using System;
 
 namespace BeginningCsharp {
     class Exercise {
-        public (string, Action)[] actions;
+        public (string name, Action method)[] actions;
         public string name;
         public int number;
 
@@ -18,10 +18,45 @@ namespace BeginningCsharp {
             this.name = name;
             this.number = number;
         }
+
+        public void Run() {
+            do {
+                Console.Clear();
+                Console.WriteLine(name);
+                if (actions.Length == 1) {
+                    actions[0].method();
+                }
+                else {
+                    Console.WriteLine("Which action? (enter number)");
+                    for (int i = 0; i < actions.Length; i++) {
+                        Console.WriteLine($"{i} {actions[i].name}");
+                    }
+                    //int actionNum = ConsoleRead.ReadInt32(actions.Length - 1);
+
+                    ConsoleKeyInfo info = Console.ReadKey();
+                    while(info.Key == ConsoleKey.Escape || info.KeyChar < '0' || info.KeyChar > ('9' - actions.Length)) {
+                        if (info.Key == ConsoleKey.Escape) {
+                            goto end;//Do not do this! This whole method needs work, but this is the worst line
+                        }
+                        Console.WriteLine("Not a valid number");
+                        info = Console.ReadKey();
+                    }
+                    int actionNum = info.KeyChar - '0';//cryptic
+
+                    Console.Clear();
+                    Console.WriteLine($"Running {actions[actionNum].name}");
+                    actions[actionNum].method();
+                }
+                //Console.Clear();
+                ConsoleWrite.CharLine();
+                Console.WriteLine($"Press Esc to go back, any other key to continue with {name}");
+            } while(Console.ReadKey().Key != ConsoleKey.Escape);
+            end:;
+        }
     }
 
     class Program {
-
+        //This is not a very nice was of listing them all, but it works
         static readonly Exercise[] exercises = {
             new Exercise("Greet", 1, Exercise01_Greet.Run),
             new Exercise("Basic Maths", 2, Exercise02_BasicMaths.Run),
@@ -53,7 +88,8 @@ namespace BeginningCsharp {
             new Exercise("Reverse a String", 13, 
                 ("Default", Exercise13_ReverseAString.Run),
                 ("Fast", Exercise13_ReverseAString.Run_Fast),
-                ("LINQ", Exercise13_ReverseAString.Run_LINQ)),
+                ("LINQ", Exercise13_ReverseAString.Run_LINQ),
+                ("Create", Exercise13_ReverseAString.Run_Create)),
             new Exercise("How Many Vowels", 14, 
                 ("Default", Exercise14_HowManyVowels.Run),
                 ("LINQ", Exercise14_HowManyVowels.Run_LINQ)),
@@ -87,7 +123,7 @@ namespace BeginningCsharp {
             new Exercise("Extra - Decode Decode", 99, ExerciseExtra_DecodeDecode.Run)
         };
 
-        static void Main(string[] args) {//This is really messy
+        static void Main() {//This is really messy
             while(true) {//Should probably be able to exit somehow
                 Console.Clear();
                 Console.WriteLine("Enter number of exercise:");
@@ -109,27 +145,28 @@ namespace BeginningCsharp {
                     Console.ReadKey();
                     continue;
                 }
-                Console.Clear();
-                if (picked.actions.Length == 1) {
-                    Console.WriteLine($"Running {picked.name}");
-                    picked.actions[0].Item2();
-                }
-                else {
-                    Console.WriteLine("Which action? (enter number)");
+                picked.Run();
+                //Console.Clear();
+                //if (picked.actions.Length == 1) {
+                //    Console.WriteLine($"Running {picked.name}");
+                //    picked.actions[0].method();
+                //}
+                //else {
+                //    Console.WriteLine("Which action? (enter number)");
 
-                    for (int i = 0; i < picked.actions.Length; i++) {
-                        Console.WriteLine($"{i} {picked.actions[i].Item1}");
-                    }
+                //    for (int i = 0; i < picked.actions.Length; i++) {
+                //        Console.WriteLine($"{i} {picked.actions[i].name}");
+                //    }
 
-                    int actionNum = ConsoleRead.ReadInt32(picked.actions.Length-1);
+                //    int actionNum = ConsoleRead.ReadInt32(picked.actions.Length-1);
 
-                    Console.Clear();
-                    Console.WriteLine($"Running {picked.actions[actionNum].Item1}");
-                    picked.actions[actionNum].Item2();
-                }
+                //    Console.Clear();
+                //    Console.WriteLine($"Running {picked.actions[actionNum].name}");
+                //    picked.actions[actionNum].method();
+                //}
 
-                Console.WriteLine("Press any key to continue");
-                Console.ReadKey();
+                //Console.WriteLine("Press any key to continue");
+                //Console.ReadKey();
             }
         }
     }

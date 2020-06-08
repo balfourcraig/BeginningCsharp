@@ -1,0 +1,137 @@
+Craig's C# into
+
+Getting started with Visual Studio 
+
+download and install VS 2019. There's a community edition which is free and does everything
+You will need a Microsoft account I think, but if you have a Windows 10 PC, you should already have one.
+
+
+
+a couple of C# notes:
+Comments are ignored by the compiler. They begin with a // after which everything on that line is ignored.
+Comments are good for explaining why you did something. Comments shouldn't (in my view) be used to explain how you did something, that's what the code does. They're best for explaining why you did something, especially if you did something unusual
+Comments are also very useful for "commenting out" lines of code. If there's a line with an error, or you want to remove a block for a bit not not delete it in case you need to put it back, you can put a // at the start of the line and it will be ignored.
+
+C# is a strongly typed language. This means every variable has a type, which cannot be changed. There are a lot of types, you'll get familiar with them in time. Here's the main ones:
+int - the integers, can only hold whole numbers (including negatives) so you cannot have anything after a decimal point. For example, and int with value 5 / 2 will equal 2, because the 0.5 was lost
+double - these are known as floating point numbers (double is short for double precision floating point). They can hold numbers with decimals. There's a few funky quirks with these, but you shouldn't hit them often. Just be aware that they can sometimes bite you, so unless you need real numbers, use an int.
+float - this is like double but slightly less accurate. I only mention it because Unity uses them a lot. For all intents and purposed they're the same as double
+string - text data. Nothing much to say here, they are wrapped in " ". Adding to a string (with +) will concatenate to the end of the string eg. "Hello" + "World" = "HelloWorld"
+bool - short for boolean, may only be true or false. Used for conditional things like if statements. for example the statement 3 > 4 has type bool and value false (because 3 is not greater than 4)
+class - these are user-defined. They can be thought of as a block of other types, often with behavior. Don't worry about classes much now, just know they're types, and each different type of class is its own type. Yeah, that's a mess. The only class you'll see for a while is the Program class which holds the Main method.
+struct - don't worry about these, you'll see them in Unity. They're 90% the same as classes, and will be used in Unity like how classes are.
+
+C# calls them methods, other languages (like JS) calls them functions. They're the same thing.
+A method takes data in, does something to it, and "returns" data out.
+The Main method is where every program starts. It returns "void" meaning it doesn't return anything. You can ignore the string[] ars part, that's what it takes, but for now assume it takes nothing.
+Methods can be static or not. Don't worry about this now, all the methods in this lab book will be static.
+
+C#'s compiler is very strict. This may feel like it's fighting you, but it's actually really good. It will catch mistakes before they have a chance to run :)
+Every statement in C# must end with a ;
+Knowing what is a "statement" and what isn't will take a little practice, but the compiler will yell at you if you make a mistake, so it's easy to catch them
+Every block is wrapped in { } every { must match a }.
+Whitespace in C# is meaningless, including indentation. You could write your whole program on one line (though please, for the love of god don't!)
+This doesn't mean indentation isn't important. Indentation makes your program readable. VS will do a good job with formatting, so just trust it really.
+
+____________________________________________________
+Your First Programme: Hello World
+
+For now, create you new projects/solutions as .Net Core (latest version you have) console applications. There are other options, and things like .Net Framework and .Net Standard, but you can ignore those for now. .Net Core is the current standard. Latest version is 3.1 but for all these labs it doesn't really make a difference what version you have
+
+Name you project to something.
+
+VS will probably write the Hello World program for you! It's a good chance to look at the program structure though. Here it is:
+
+
+
+	using System;//This is a block of code, a library, which you want your program to have access to. There are a lot of 
+
+	namespace ExampleNamespace //a namespace is a collection of code. A namespace can contain main classes, and other namespaces. Many files can have the same namespace. You can kind of think of namespaces as folders, and classes like the files inside them.
+	{
+		class Program //Name of the class
+		{
+			static void Main(string[] args) //This is the method signature. The 'static' is a modifier, you can ignore it for now. 'void' is the return type, if for example we had a method to add to numbers, the return would be 'int' or 'double'
+			//'Main' is the name of the method. Main is a special method, every program must have one and only one Main method. It is where the program starts.
+			//anything inside the ( ) are the arguments or parameters passed to the method. This will become clear soon. 
+			{
+				Console.WriteLine("Hello World!");//This is a method calls
+				//Console is a special class (it lives in the namespace System, which is why we have the using up the top)
+				//we are calling the WriteLine method on Console to print some text to the screen
+				//"Hello World!" is a string and is passed as an argument to Console.WriteLine. WriteLine is a method, and will have the signature:  static void WriteLine(string value)
+			}//Main ends
+		}//class Program ends
+	}namespace ExampleNamespace ends
+	
+If you copy paste that into VS you will have proper highlighting and it will be much easier to read!
+use Ctrl+f5 to run your program
+This will compile your program, which can take a few seconds, then run it. You will get a console window open, and should see "Hello World!" displayed
+
+Well done. It's a right of passage that your first program in any language must be HelloWorld
+____________________________________________________
+
+Reading user input from the keyboard
+
+The lab book will use Scanner which is a Java thing. It's much easier in C# for some things, others are a bit tricky. As is with all things.
+
+
+The greet program:
+
+using System;
+namespace ExampleNamespace
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("What is your name?"); //as in the above example
+            string name = Console.ReadLine(); //this method waits for input (confirmed on enter) and returns it. Here we create a variable of type string called name, and store the result of ReadLine in it. This line does a lot!
+            Console.WriteLine("Hello " + name); //Print the results back to the user. Notice the string concatenation, and how the "Hello " string includes the space inside it, since whitespace is meaningless outside strings
+        }
+    }
+}
+
+
+
+Reading numbers:
+The one nice thing Java's Scanner gives us is a method called NextInt which gets the next number in the input stream. C#'s Console does not have this, which is a pain for these examples, many of which read numbers as input.
+
+Here is a method which will replicate Java's functionality here. You can just copy-paste this method inside the class Program, below Main. Don't worry too much about what it's doing for now (it needs some work anyway), unless you're curious, in which case I can explain.
+
+public static int ReadInt()
+{
+	string input = Console.ReadLine();
+	while(!int.TryParse(input, out _))
+	{
+		Console.ForegroundColor = ConsoleColor.Red;
+		Console.WriteLine("Enter a valid integer");
+		Console.ResetColor();
+		input = Console.ReadLine();
+	}
+	return int.Parse(input);
+}
+
+
+You can then just call it like this:
+int num = ReadInt();
+
+and num will hold the next number you enter
+
+Some of the examples such as Exercise 2 - Basic Maths have the sample input with both numbers on one line separated by a space. This is not nice, and will make your life unnecessarily hard. In that example, just enter 12 and 6 on their own lines.
+
+Some of the examples have little hints beside them. These are really good, and will get you to google the right things, but the names are all Java, so here's the C# versions for the exercises which have hints:
+
+printf => string.Format (or if you're feeling adventurous, google "C# interpolated strings")
+substring => Substring
+while => while (the sentinal controlled loop is a funny name for it. They mean, loop while the input is not "#" for string and not -1 for numbers)
+for => for (exactly the same)
+Exercise 15- Vowel Count says to lowercase the input to make it case insensitive. This is correct, but it's better practice to make it uppercase
+break => break
+hasNextint => these are all a bit mean in C#, I'd skip it for now. Would be a good one to come back to when you're more confident. C# doesn't have a built in hasNextint function, so you would need to replicate something similar
+array => array
+ArrayList => List<> (between then <> goes the type. Google will explain this)
+File Processing => just google this one really, or ask me when you get here.
+A few of these require data files like pricelist. I don't have these, but you can make them up based on the sample, just be aware your output won't match the sample
+HashMap => Dictionary
+
+
+Hope this helps, just flick me a message with any questions at all :)
